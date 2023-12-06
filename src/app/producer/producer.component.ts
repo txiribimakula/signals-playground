@@ -18,4 +18,8 @@ export class ProducerComponent {
   decreaseOffset() {
     this.signals.offset.update(value => value - 1);
   }
+
+  addItem() {
+    this.signals.items.update(items => ["new item", ...items]);
+  }
 }
