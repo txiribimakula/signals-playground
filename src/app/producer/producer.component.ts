@@ -9,6 +9,8 @@ import { SignalsService } from '../signals.service';
   styleUrl: './producer.component.scss'
 })
 export class ProducerComponent {
+  index = 0;
+
   constructor(protected signals: SignalsService) {}
 
   increaseOffset() {
@@ -20,6 +22,7 @@ export class ProducerComponent {
   }
 
   addItem() {
-    this.signals.items.update(items => ["new item", ...items]);
+    this.signals.items.update(items => [...items, "new item" + this.index]);
+    this.index++;
   }
 }
