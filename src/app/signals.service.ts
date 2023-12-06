@@ -1,5 +1,6 @@
 import { Injectable, Signal, computed, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { filter, skipWhile } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,11 @@ export class SignalsService {
 
   currentItem = computed(() => this.items()[this.offset()]);
 
+  currentItem$ = toObservable(this.currentItem).pipe(filter(item => item != undefined));
+
   constructor() {
     toObservable(this.hasPendingItems).subscribe((hasPendingItems) =>
       console.log(hasPendingItems)
-    );
-    
-    toObservable(this.currentItem).subscribe((item) =>
-      console.log(item)
     );
   }
 }

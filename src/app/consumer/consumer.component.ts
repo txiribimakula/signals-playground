@@ -6,9 +6,10 @@ import { SignalsService } from '../signals.service';
   standalone: true,
   imports: [],
   templateUrl: './consumer.component.html',
-  styleUrl: './consumer.component.scss'
+  styleUrl: './consumer.component.scss',
 })
 export class ConsumerComponent {
   constructor(protected signals: SignalsService) {
+    signals.currentItem$.subscribe((item) => console.log(item + " in consumer component"));
   }
 }
