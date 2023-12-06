@@ -11,12 +11,4 @@ import { SignalsService } from '../signals.service';
 export class ConsumerComponent {
   constructor(protected signals: SignalsService) {
   }
-
-  increaseOffset() {
-    this.signals.offset.update(value => value + 1);
-  }
-
-  decreaseOffset() {
-    this.signals.offset.update(value => value - 1);
-  }
 }
