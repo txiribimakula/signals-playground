@@ -14,9 +14,17 @@ export class SignalsService {
     () => this.items().length > this.offset()
   );
 
+  status = computed(() =>
+    this.hasPendingItems()
+      ? 'Handling existing items...'
+      : 'Waiting for new items...'
+  );
+
   currentItem = computed(() => this.items()[this.offset()]);
 
-  currentItem$ = toObservable(this.currentItem).pipe(filter(item => item != undefined));
+  currentItem$ = toObservable(this.currentItem).pipe(
+    filter((item) => item != undefined)
+  );
 
   constructor() {
     toObservable(this.hasPendingItems).subscribe((hasPendingItems) =>
