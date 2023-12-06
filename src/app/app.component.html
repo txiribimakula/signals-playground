@@ -1,2 +1,18 @@
+<h1>
+    Items
+</h1>
+@for (item of this.signals.items(); track $index){
+<p>
+    {{item}}
+    @if ($index == this.signals.offset()) {
+        <--
+    }
+</p>
+}
+<p>
+    @if(this.signals.offset() == this.signals.items().length) {
+        <--
+    }
+</p>
 <app-producer></app-producer>
 <app-consumer></app-consumer>
